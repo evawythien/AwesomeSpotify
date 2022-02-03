@@ -2,13 +2,14 @@ const SpotifyWebApi = require('spotify-web-api-js');
 
 const spotifyApi = new SpotifyWebApi();
 
-
 export async function setSpotifyAccessToken(token) {
-    let accessToken = '';
+
     if (token) {
         await spotifyApi.setAccessToken(token);
         return token;
     }
+
+    let accessToken = '';
     if (process.client) {
 
         const callbackUrl = window.location.href;
@@ -32,6 +33,7 @@ export async function setSpotifyAccessToken(token) {
             await spotifyApi.setAccessToken(accessToken);
         }
     }
+
     return accessToken;
 }
 
